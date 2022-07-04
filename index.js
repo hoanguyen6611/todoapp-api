@@ -5,8 +5,10 @@ const mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
+const port = process.env.PORT||3000;
 const projectRoute = require("./routes/project");
 const todoRoute = require("./routes/todo");
+
 
 dotenv.config();
 mongoose.connect(process.env.MONGODB_URL, () => {
@@ -20,6 +22,6 @@ app.use(morgan("common"));
 app.use("/v1/project", projectRoute);
 app.use("/v1/todo", todoRoute);
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log("Sever is running ...");
 });

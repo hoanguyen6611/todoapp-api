@@ -8,4 +8,8 @@ router.post("/addPost", todoController.addTodo);
 router.get("/allTodos", todoController.getAllTodo);
 //GET AN TODO
 router.get("/:id", todoController.getAnTodo);
+//UPDATE AN TODO
+router.put("/:id", todoController.updateTodo)
+//DELETE AN TODO
+router.delete("/:id", todoController.deleteTodo);
 module.exports = router;
