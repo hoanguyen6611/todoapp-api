@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const projectSchema = new mongoose.Schema({
   name: {
     type: String,
-    require: true,
+    required: true,
   },
   farvorite: {
     type: Boolean,
@@ -17,20 +17,46 @@ const projectSchema = new mongoose.Schema({
 const todoSchema = new mongoose.Schema({
   name: {
     type: String,
-    require: true,
+    required: true,
   },
   description: {
     type: String,
   },
   date: {
     type: String,
-    require: true,
+    required: true,
   },
   project: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Project",
   },
 });
-let Todo = mongoose.model("Todo", todoSchema);
-let Project = mongoose.model("Project", projectSchema);
-module.exports = { Todo, Project };
+const userSchema = new mongoose.Schema(
+  {
+    email: {
+      type: String,
+      required: true,
+    },
+    username: {
+      type: String,
+      required: true,
+      minlength: 6,
+      maxlength: 20,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    admin: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  { timestamps: true }
+);
+const Todo = mongoose.model("Todo", todoSchema);
+const Project = mongoose.model("Project", projectSchema);
+const User = mongoose.model("User", userSchema);
+
+module.exports = { Todo, Project, User };
