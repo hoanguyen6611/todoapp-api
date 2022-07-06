@@ -26,7 +26,7 @@ const authController = {
         admin: user.admin,
       },
       process.env.JWT_ACCESS_KEY,
-      { expiresIn: "30s" }
+      { expiresIn: "1h" }
     );
   },
   //GENERATE REFRESH TOKEN
@@ -64,7 +64,7 @@ const authController = {
           sameSite: "strict",
         });
         const { password, ...others } = user._doc;
-        res.status(200).json({ ...others, accessToken });
+        res.status(200).json({ ...others, accessToken }, "Login successful");
       }
     } catch (error) {
       res.status(500).json(error);
